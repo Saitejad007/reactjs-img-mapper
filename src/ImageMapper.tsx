@@ -154,7 +154,6 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
       });
     }
 
-    setImgRef(img.current);
     if (imgRef) renderPrefilledAreas();
   };
 
@@ -215,7 +214,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
       widthProp && imageWidthProp && imageWidthProp > 0
         ? (widthProp as number) / imageWidthProp
         : 1;
-    if (responsive && parentWidth && imgRef.naturalWidth) {
+    if (responsive && parentWidth) {
       return coords.map(coord => coord / (imgRef.naturalWidth / parentWidth));
     }
     return coords.map(coord => coord * scale);
@@ -303,6 +302,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
         ref={img}
         onClick={event => imageClick(event, props)}
         onMouseMove={event => imageMouseMove(event, props)}
+        onLoad={() => setImgRef(img.current)}
       />
       <canvas className="img-mapper-canvas" ref={canvas} style={styles().canvas} />
       <map className="img-mapper-map" name={map.name} style={styles().map}>
