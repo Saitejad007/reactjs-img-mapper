@@ -15,6 +15,7 @@ export interface MapAreas {
   strokeColor?: string;
   lineWidth?: number;
   preFillColor?: string;
+  title?: string;
 }
 
 export interface Map {
@@ -52,6 +53,7 @@ export interface ImageMapperProps {
   rerenderProps?: Array<keyof ImageMapperProps>;
   responsive?: boolean;
   parentWidth?: number;
+  enableTooltips?: string;
 
   onImageClick?: ((e: ImageEvent) => void) | null;
   onImageMouseMove?: ((e: ImageEvent) => void) | null;

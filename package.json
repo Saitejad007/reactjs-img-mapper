@@ -1,26 +1,32 @@
 {
-  "name": "react-img-mapper",
-  "version": "1.4.0",
-  "description": "React Component to highlight interactive zones in images",
+  "name": "reactjs-img-mapper",
+  "version": "1.0.1",
+  "description": "React Component to highlight interactive zones in images.",
   "keywords": [
     "react",
-    "react-img-mapper",
+    "nextjs",
+    "reactjs-img-mapper",
     "react-image-mapper",
+    "react-img-mapper",
+    "img-map",
     "img-mapper",
-    "image-mapper",
+    "image-map",
+    "image map",
     "img mapper",
+    "image-mapper",
+    "image mapper",
     "image mapper"
   ],
-  "homepage": "https://img-mapper.github.io/react-docs",
+  "homepage": "https://github.com/ventsislavnikolov/reactjs-img-mapper",
   "bugs": {
-    "url": "https://github.com/img-mapper/react-img-mapper/issues"
+    "url": "https://github.com/ventsislavnikolov/reactjs-img-mapper/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/img-mapper/react-img-mapper.git"
+    "url": "https://github.com/ventsislavnikolov/reactjs-img-mapper.git"
   },
   "license": "MIT",
-  "author": "Nisharg Shah",
+  "author": "Ventsislav Nikolov",
   "type": "commonjs",
   "main": "dist/ImageMapper.js",
   "types": "dist/ImageMapper.d.ts",
@@ -29,7 +35,7 @@
     "lint": "eslint . --ext .tsx",
     "lint-fix": "eslint . --ext .tsx --fix",
     "pre-commit": "npx husky add .husky/pre-commit \"npx lint-staged\"",
-    "prepublishOnly": "npm run build",
+    "pre-publish": "npm run build",
     "prepare": "npm run build && husky install"
   },
   "lint-staged": {
@@ -50,12 +56,13 @@
     ]
   },
   "dependencies": {
-    "react-fast-compare": "^3.2.0"
+    "react-fast-compare": "^3.2.0",
+    "react-tooltip": "^4.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@types/node": "^16.7.6",
-    "@types/react": "^17.0.19",
+    "@types/react": "^18.0.15",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
     "babel-eslint": "^10.1.0",
@@ -71,15 +78,15 @@
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^4.4.2"
   },
   "peerDependencies": {
-    "react": "16.x || 17.x",
-    "react-dom": "16.x || 17.x"
+    "react": "16.x || 17.x || 18.x",
+    "react-dom": "16.x || 17.x || 18.x"
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import isEqual from 'react-fast-compare';
+import ReactTooltip from 'react-tooltip';
 import styles from './styles';
 import { Map, Container, MapAreas, CustomArea, AreaEvent, ImageMapperProps } from './types';
 import { rerenderPropsList, ImageMapperDefaultProps } from './constants';
@@ -35,6 +36,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
     stayMultiHighlighted,
     toggleHighlighted,
     parentWidth,
+    enableTooltips,
     responsive,
     onLoad,
     onMouseEnter,
@@ -51,6 +53,10 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
   const canvas = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D>(null);
   const isInitialMount = useRef<boolean>(true);
+
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  });
 
   useEffect(() => {
     initCanvas(true);
@@ -209,7 +215,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
       widthProp && imageWidthProp && imageWidthProp > 0
         ? (widthProp as number) / imageWidthProp
         : 1;
-    if (responsive && parentWidth) {
+    if (responsive && parentWidth && imgRef.naturalWidth) {
       return coords.map(coord => coord / (imgRef.naturalWidth / parentWidth));
     }
     return coords.map(coord => coord * scale);
@@ -280,6 +286,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
           onClick={event => click(extendedArea, index, event)}
           href={area.href}
           alt="map"
+          data-tip={area.title}
         />
       );
     });
@@ -301,6 +308,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
       <map className="img-mapper-map" name={map.name} style={styles().map}>
         {isRendered && !disabled && imgRef && renderAreas()}
       </map>
+      {enableTooltips && <ReactTooltip />}
     </div>
   );
 };

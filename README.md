@@ -2,7 +2,7 @@
 
 React Component to highlight interactive zones in images
 
-> This repository is based on react-image-mapper but with some enhancements
+> This repository is based on react-image-mapper and react-img-mapper but with some enhancements.
 
 ``` 
 1. Promise to be maintained this repository        
@@ -18,28 +18,26 @@ React Component to highlight interactive zones in images
 
 ## Installation
 
-Package: [react-img-mapper](https://www.npmjs.com/package/react-img-mapper)
+Package: [reactjs-img-mapper](https://www.npmjs.com/package/reactjs-img-mapper)
 
 **NPM**
 
 ```  
-npm install react-img-mapper --save        
+npm install reactjs-img-mapper --save        
 ```  
 
 **Yarn**
 
 ```  
-yarn add react-img-mapper      
+yarn add reactjs-img-mapper      
 ```    
 
 ## Demo & Examples
 
-Live demo: [demo](https://img-mapper.github.io/react-docs)
-
 To run the example locally
 
 ```        
-git clone https://github.com/img-mapper/react-docs.git
+git clone https://github.com/ventsislavnikolov/reactjs-img-mapper.git
 npm install        
 npm start        
 ```        
@@ -54,7 +52,7 @@ Import the component as you normally do, and add it wherever you like in your JS
 
 ```javascript           
 import React from 'react';
-import ImageMapper from 'react-img-mapper';
+import ImageMapper from 'reactjs-img-mapper';
 
 const Mapper = props => {
   const URL = 'https://raw.githubusercontent.com/img-mapper/react-docs/master/src/assets/example.jpg';
@@ -92,7 +90,8 @@ export default Mapper;
 |**toggleHighlighted**|*bool*|You can toggle selected highlighted area|false|
 |**rerenderProps**|*array*|specify rerenderProps property, if you want to rerender your map with different property|[]|       
 |**responsive**|*bool*|responsive map in all resolution ( for enable it you need to specify parentWidth )|false|        
-|**parentWidth**|*number*|parent max width for responsive|0|   
+|**parentWidth**|*number*|parent max width for responsive|0|
+|**enableTooltips**|*bool*|enable tooltips|false|
 
 ## Properties Callback
 
@@ -149,4 +148,4 @@ When received from an event handler, an area is extended with the following prop
 
 Distributed with an MIT License. See LICENSE.txt for more details!
 
-Copyright (c) 2021 Nisharg Shah
+Copyright (c) 2022 Ventsislav Nikolov
