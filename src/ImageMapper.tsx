@@ -14,6 +14,7 @@ import {
   touchStart,
   touchEnd,
 } from './events';
+import { type } from 'os';
 
 export * from './types';
 
@@ -197,7 +198,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
         newArea.preFillColor = area.fillColor || fillColorProp;
       }
 
-      const updatedAreas = chosenArea.areas.map(cur =>
+      const updatedAreas = chosenArea.areas.map((cur: any) =>
         cur[areaKeyName] === area[areaKeyName] ? newArea : cur
       );
       setMap(prev => ({ ...prev, areas: updatedAreas }));
@@ -221,18 +222,20 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
   };
 
   const renderPrefilledAreas = (mapObj: Map = map) => {
-    mapObj.areas.map(area => {
-      if (!area.preFillColor) return false;
-      callingFn(
-        area.shape,
-        scaleCoords(area.coords),
-        area.preFillColor,
-        area.lineWidth || lineWidthProp,
-        area.strokeColor || strokeColorProp,
-        true,
-        ctx
-      );
-      return true;
+    mapObj.areas.map((attributes: Array<MapAreas>) => {
+      attributes.map((area: MapAreas) => {
+        if (!area.preFillColor) return false;
+        callingFn(
+          area.shape,
+          scaleCoords(area.coords),
+          area.preFillColor,
+          area.lineWidth || lineWidthProp,
+          area.strokeColor || strokeColorProp,
+          true,
+          ctx
+        );
+        return true;
+      });
     });
   };
 
@@ -262,33 +265,36 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
     renderPrefilledAreas(mapProp);
   };
 
-  const renderAreas = () =>
-    map.areas.map((area, index) => {
-      const scaledCoords = scaleCoords(area.coords);
-      const center = computeCenter(area);
-      const extendedArea = { ...area, scaledCoords, center };
+  const renderAreas = () => {
+    map.areas.map((attribute: Array<MapAreas>) => {
+      attribute?.map((area: MapAreas, index: number) => {
+        const scaledCoords = scaleCoords(area.coords);
+        const center = computeCenter(area);
+        const extendedArea = { ...area, scaledCoords, center };
 
-      if (area.disabled) return null;
+        if (area.disabled) return null;
 
-      return (
-        <area
-          key={area[areaKeyName] || index.toString()}
-          shape={area.shape}
-          coords={scaledCoords.join(',')}
-          onMouseEnter={event => hoverOn(extendedArea, index, event)}
-          onMouseLeave={event => hoverOff(extendedArea, index, event)}
-          onMouseMove={event => mouseMove(extendedArea, index, event, props)}
-          onMouseDown={event => mouseDown(extendedArea, index, event, props)}
-          onMouseUp={event => mouseUp(extendedArea, index, event, props)}
-          onTouchStart={event => touchStart(extendedArea, index, event, props)}
-          onTouchEnd={event => touchEnd(extendedArea, index, event, props)}
-          onClick={event => click(extendedArea, index, event)}
-          href={area.href}
-          alt="map"
-          data-tip={area.title}
-        />
-      );
+        return (
+          <area
+            key={area[areaKeyName] || index.toString()}
+            shape={area.shape}
+            coords={scaledCoords.join(',')}
+            onMouseEnter={event => hoverOn(extendedArea, index, event)}
+            onMouseLeave={event => hoverOff(extendedArea, index, event)}
+            onMouseMove={event => mouseMove(extendedArea, index, event, props)}
+            onMouseDown={event => mouseDown(extendedArea, index, event, props)}
+            onMouseUp={event => mouseUp(extendedArea, index, event, props)}
+            onTouchStart={event => touchStart(extendedArea, index, event, props)}
+            onTouchEnd={event => touchEnd(extendedArea, index, event, props)}
+            onClick={event => click(extendedArea, index, event)}
+            href={area.href}
+            alt="map"
+            data-tip={area.title}
+          />
+        );
+      });
     });
+  };
 
   return (
     <div id="img-mapper" style={styles(props).container} ref={container}>

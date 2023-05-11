@@ -20,7 +20,8 @@ export interface MapAreas {
 
 export interface Map {
   name: string;
-  areas: Array<MapAreas>;
+  // areas: Array<MapAreas>;
+  areas: any;
 }
 
 export interface CustomArea extends MapAreas {
