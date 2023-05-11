@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+// @types-ignore
+
 import React, { useState, useEffect, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import ReactTooltip from 'react-tooltip';
@@ -14,7 +17,6 @@ import {
   touchStart,
   touchEnd,
 } from './events';
-import { type } from 'os';
 
 export * from './types';
 
@@ -198,6 +200,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
         newArea.preFillColor = area.fillColor || fillColorProp;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const updatedAreas = chosenArea.areas.map((cur: any) =>
         cur[areaKeyName] === area[areaKeyName] ? newArea : cur
       );
@@ -221,8 +224,8 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
     return coords.map(coord => coord * scale);
   };
 
-  const renderPrefilledAreas = (mapObj: Map = map) => {
-    mapObj.areas.map((attributes: Array<MapAreas>) => {
+  const renderPrefilledAreas = (mapObj: Map = map) =>
+    mapObj.areas.map((attributes: Array<MapAreas>) =>
       attributes.map((area: MapAreas) => {
         if (!area.preFillColor) return false;
         callingFn(
@@ -235,9 +238,8 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
           ctx
         );
         return true;
-      });
-    });
-  };
+      })
+    );
 
   const computeCenter = (area: MapAreas): [number, number] => {
     if (!area) return [0, 0];
@@ -265,8 +267,8 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
     renderPrefilledAreas(mapProp);
   };
 
-  const renderAreas = () => {
-    map.areas.map((attribute: Array<MapAreas>) => {
+  const renderAreas = () =>
+    map.areas.map((attribute: Array<MapAreas>) =>
       attribute?.map((area: MapAreas, index: number) => {
         const scaledCoords = scaleCoords(area.coords);
         const center = computeCenter(area);
@@ -292,9 +294,8 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
             data-tip={area.title}
           />
         );
-      });
-    });
-  };
+      })
+    );
 
   return (
     <div id="img-mapper" style={styles(props).container} ref={container}>
