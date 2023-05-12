@@ -47,7 +47,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
     onClick,
   } = props;
 
-  const [map, setMap] = useState<Map>(mapProp);
+  const [map, setMap] = useState<any>(mapProp);
   const [storedMap, setStoredMap] = useState<Map>(map);
   const [isRendered, setRendered] = useState<boolean>(false);
   const [imgRef, setImgRef] = useState<HTMLImageElement>(null);
@@ -204,7 +204,7 @@ const ImageMapper: React.FC<ImageMapperProps> = (props: ImageMapperProps) => {
       const updatedAreas = chosenArea.areas.map((cur: any) =>
         cur[areaKeyName] === area[areaKeyName] ? newArea : cur
       );
-      setMap(prev => ({ ...prev, areas: updatedAreas }));
+      setMap((prev: any) => ({ ...prev, areas: updatedAreas }));
     }
 
     if (onClick) {

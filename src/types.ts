@@ -37,7 +37,7 @@ export type ImageEvent = React.MouseEvent<HTMLImageElement, MouseEvent>;
 
 export interface ImageMapperProps {
   src: string;
-  map?: Map;
+  map?: any;
   areaKeyName?: 'id';
   containerRef?: { current: HTMLDivElement } | null;
   active?: boolean;
